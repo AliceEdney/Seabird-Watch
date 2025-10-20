@@ -1,4 +1,4 @@
-# Seabird-Watch
+# Seabird Watch
 This repository is for the zooniverse citizen science project, Seabird Watch ([www.seabirdwatch.org](https://www.zooniverse.org/projects/penguintom79/seabirdwatch)). It provides code for processing images so they can be uploaded to Seabird Watch, and for extracting volunteer classifications from Seabird Watch for subsequent analysis. 
 
 <img width="1852" height="780" alt="Fig 2 example screenshot of SW" src="https://github.com/user-attachments/assets/7ab38ab1-fcad-40b9-b082-d594be64cba3" />
