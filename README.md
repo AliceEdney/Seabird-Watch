@@ -7,9 +7,11 @@ Code is saved in two separate folders:
 - '2 Formating zooniverse output' is run after images have finished being classifised on Seabird Watch (i.e. they have been retired). This extracts the x, y coordinates for where volunteers clicked on objects in images, and classified them (e.g. as an adult, chick, egg, etc).
 
 ### 1 Processing images
-AIM: To process raw images into the required format for upload to Seabird Watch.   
-INPUT: Raw unprocessed images in '_raw' folder.  
-OUTPUT: Folders of processed images and metadata: _raw, _renamed, _metadata, _zooniverse, _threeaday, _midday, _goldstandard, _rotated.  
+_AIM:_ To process raw images into the required format for upload to Seabird Watch. 
+
+_INPUT:_ Raw unprocessed images in '_raw' folder.  
+
+_OUTPUT:_ Folders of processed images and metadata: _raw, _renamed, _metadata, _zooniverse, _threeaday, _midday, _goldstandard, _rotated.  
 
 1) Assign a 4 letter identifier to the site where the images were taken, and append a letter to indicate the camera within that site e.g. BERNa, BERNb - BERNa is camera A on Berneray, and BERNb is camera B on Berneray.
 
@@ -80,9 +82,11 @@ OR **5b sw select midday_ round minutes bushnell**
     File saved in '_metadata' folder  
     
 ### 2 Formating zooniverse output 
-OVERALL AIM: To extract volunteer classifications (x, y coordinates where volunteers clicked) from Seabird Watch for subsequent analysis.  
-INPUT: XX and XX downloaed from Seabird Watch  
-OUTPUT: csvs containing x, y coordinates where volunteers clicked on birds in each image, as well as metadata such as datetime and temperature. One csv will be created for each tool in the workflow e.g. kittiwake adult and kittiwake chick. 
+_OVERALL AIM:_ To extract volunteer classifications (x, y coordinates where volunteers clicked) from Seabird Watch for subsequent analysis.
+
+_INPUT:_ XX and XX downloaed from Seabird Watch  
+
+_OUTPUT:_ csvs containing x, y coordinates where volunteers clicked on birds in each image, as well as metadata such as datetime and temperature. One csv will be created for each tool in the workflow e.g. kittiwake adult and kittiwake chick. 
 
 1) Request new classification export and new subject export from the Seabird Watch lab. 
 
