@@ -84,7 +84,7 @@ OR **5b sw select midday_ round minutes bushnell**
 ### 2 Formating zooniverse output 
 _OVERALL AIM:_ To extract volunteer classifications (x, y coordinates where volunteers clicked) from Seabird Watch for subsequent analysis.
 
-_INPUT:_ XX and XX downloaed from Seabird Watch  
+_INPUT:_ new classification export and new subjects export downloaded from Seabird Watch  
 
 _OUTPUT:_ csvs containing x, y coordinates where volunteers clicked on birds in each image, as well as metadata such as datetime and temperature. One csv will be created for each tool in the workflow e.g. kittiwake adult and kittiwake chick. 
 
