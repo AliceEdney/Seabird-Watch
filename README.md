@@ -96,7 +96,7 @@ Make sure to change the 'workflow_id' to the workflow you would like to extract 
 3) Run '**2 sw format zooniverse extracted workflow - .....R**'    
 Select the script that is specific to the workflow you would like to extract data from e.g. '2 sw format zooniverse extracted workflow - Kittiwake nests.R'.
 
-NOTE - For the Timelapse workflow on Seabird Watch, two separate scripts need to be run '2 sw format zooniverse extracted workflow - Timelapse 55.97.R' and '2 sw format zooniverse extracted workflow - Timelapse 57.1.R'. This is because the Timelapse workflow has multiple versions. Version 55.97 has images annotated from 2017-10-23 to 2020-03-03, and has tools: 'Chicks', 'Kittiwakes', 'Guillemots'. Whereas, version 57.1 has images annotated from 2020-03-03 onwards, and has tools: Kittiwake, Guillemot, Kittiwake chicks, Guillemot chicks. 'sw join zooniverse extracted workflows.R' must then be run to join csvs from version 55.97 and 57.1 together. 
+NOTE - For the Timelapse workflow on Seabird Watch, two separate scripts need to be run: '2 sw format zooniverse extracted workflow - Timelapse 55.97.R' and '2 sw format zooniverse extracted workflow - Timelapse 57.1.R'. This is because the Timelapse workflow has multiple versions. Version 55.97 has images annotated from 2017-10-23 to 2020-03-03, and has tools: 'Chicks', 'Kittiwakes', 'Guillemots'. Whereas, version 57.1 has images annotated from 2020-03-03 onwards, and has tools: Kittiwake, Guillemot, Kittiwake chicks, Guillemot chicks. 'sw join zooniverse extracted workflows.R' can then be run to join csvs from version 55.97 and 57.1 together. 
   
 
 
