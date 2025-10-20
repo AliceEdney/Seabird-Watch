@@ -3,8 +3,8 @@ This repository is for the zooniverse citizen science project, Seabird Watch ([w
 
 ## Usage
 Code is saved in two separate folders:
-- '1 Processing images' is run before uploading images to Seabird Watch. The output (images and metadata) can then be uploaded to Seabird Watch project. 
-- '2 Formating zooniverse output' is run after images have finished being classifised on Seabird Watch (i.e. they have been retired). This extracts the x, y coordinates for where volunteers clicked on birds in images.
+- '1 Processing images' is run before uploading images to Seabird Watch. The output (images and metadata) can then be uploaded to the Seabird Watch project. 
+- '2 Formating zooniverse output' is run after images have finished being classifised on Seabird Watch (i.e. they have been retired). This extracts the x, y coordinates for where volunteers clicked on objects in images, and classified them (e.g. as an adult, chick, egg, etc).
 
 ### 1 Processing images
 AIM: To process raw images into the required format for upload to Seabird Watch.   
