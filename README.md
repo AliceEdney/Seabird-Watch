@@ -98,5 +98,6 @@ Select the script that is specific to the workflow you would like to extract dat
 
 NOTE - For the Timelapse workflow on Seabird Watch, two separate scripts need to be run: '2 sw format zooniverse extracted workflow - Timelapse 55.97.R' and '2 sw format zooniverse extracted workflow - Timelapse 57.1.R'. This is because the Timelapse workflow has multiple versions. Version 55.97 has images annotated from 2017-10-23 to 2020-03-03, and has tools: 'Chicks', 'Kittiwakes', 'Guillemots'. Whereas, version 57.1 has images annotated from 2020-03-03 onwards, and has tools: Kittiwake, Guillemot, Kittiwake chicks, Guillemot chicks. 'sw join zooniverse extracted workflows.R' can then be run to join csvs from version 55.97 and 57.1 together. 
   
-
+## Associated papers
+Edney, A.J., Danielsen, J., Descamps, S., Jónsson, J.E., Owen, E., Merkel, F., Stefánsson, R.A., Wood, M.J., Jessopp, M.J. and Hart, T., 2025. Using citizen science image analysis to measure seabird phenology. Ibis, 167(1), pp.56-72. ([https://doi.org/10.1111/ibi.13317]https://doi.org/10.1111/ibi.13317). 
 
