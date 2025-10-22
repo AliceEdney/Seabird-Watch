@@ -44,9 +44,11 @@ selecteddf<-as.character(datafile2$imageid[grep(pattern = paste(t1, t2, t3, sep 
 
 #Crop selected images
 library("OpenImageR")
-library("jpeg")
 require("grid")
-destlist<- gsub(pattern="_renamed/", replacement="_cropped/" , x=selecteddf)
+library("stringr")
+
+input_pattern <- str_sub(copydir, -9)
+destlist<- gsub(pattern=input_pattern, replacement="_zooniverse/" , x=selecteddf)
 
 for(i in 1:length(selecteddf)) {
 
@@ -60,4 +62,5 @@ for(i in 1:length(selecteddf)) {
 }
 
 }
+
 
