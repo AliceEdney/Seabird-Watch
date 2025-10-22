@@ -45,13 +45,13 @@ selecteddf<-as.character(datafile2$imageid[grep(pattern = paste(t1, t2, t3, sep 
 
 #Reduce selected images
 
-library("jpeg")
+library("OpenImageR")
 require("grid")
 destlist<- gsub(pattern="_renamed/", replacement="_zooniverse/" , x=selecteddf)
 
 for(i in 1:length(selecteddf)) {
 
-  currpic<-readJPEG(selecteddf[i], native=TRUE)
+  currpic<-readImage(selecteddf[i], native=TRUE)
   dims<-dim(currpic)          ## calculate the dimensions of currpic      
   aspect<-round(dims[1]/dims[2],4)     ## calculate the aspect ratio of currpic
   
@@ -65,4 +65,5 @@ for(i in 1:length(selecteddf)) {
 }
 
 }
+
 
