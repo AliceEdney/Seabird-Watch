@@ -13,8 +13,31 @@ _AIM:_ To process raw images into the required format for upload to Seabird Watc
 
 _INPUT:_ Raw unprocessed images in '_raw' folder.  
 
-_OUTPUT:_ Folders of processed images and metadata: _raw, _renamed, _metadata, _zooniverse, _threeaday, _midday, _goldstandard, _rotated.  
+_OUTPUT:_ Folders of processed images and metadata
 
+There are two options for processing raw images. The first (preferred) option, uses 'sw process images with alignment.R' and requires aligning the images to remove movement between images created by camera shake BEFORE upload to Seabird Watch. The second option, uses 'sw process images without alignment.R' and does not have an image alignment step. However, this means alignment must be completed once volunteer classifications have been downloaded from Seabird Watch. This can be achieved using https://github.com/CarlosArteta/pengbot-aligner. Image alignment is an essential step if you want to follow individual nests across the breeding season, because it ensures that the x, y coordinates of each nest remain the same across a time-series. If you do not align the images, then small movements of the camera (e.g. due to the tripod wobbling in strong winds) will cause the nests to move between images, and so it will be difficult to automatically track the progress of individual nests across the time-series.  
+
+## sw process images with alignment.R
+1) Assign a 4 letter identifier to the site where the images were taken, and append a letter to indicate the camera within that site e.g. BERNa, BERNb - BERNa is camera A on Berneray, and BERNb is camera B on Berneray.
+
+3) Create the following folder structure (replacing the first 5 letters with your camera's identifier). 
+<img width="243" height="443" alt="image" src="https://github.com/user-attachments/assets/8d3e1d37-eb19-43b1-8ce3-2b23b7bfced5" />
+
+4) Within the _raw folder, create a folder that includes the year the images were collected from the camera. If there are multiple folders with images on the camera SD card, label them 'a', 'b', 'c', etc. Do not try and save them in a single folder as images may have the same name and overwrite each other.  
+e.g. BERNa2025a, BERNa2025b, and BERNa2025c are all images collected from camera A on Berneray in 2025. 
+  <img width="218" height="144" alt="image" src="https://github.com/user-attachments/assets/47b17c9a-268f-459f-9a8e-0866a82a1a2b" />
+
+5) Open '**1 sw process cameras with alignment.R**' for images collected on Reconyx and Bushnell cameras (will likely work for other camera types). Read through this script, change the necessary lines to match your camera name, times to select, and values that define where the image will be cropped. 
+
+6) Run the Process1 function. This will rename and copy the raw images into a _renamed folder. 
+
+7) Take the images from the _renamed folder and align them to remove movement between images created by camera shake. A variety of software can be used to align images. We recommend trying the method described by Merkel et al. 2016 in the Appendix of the following paper: Merkel, F.R., Johansen, K.L. and Kristensen, A.J., 2016. Use of time‐lapse photography and digital image analysis to estimate breeding success of a cliff‐nesting seabird. Journal of Field Ornithology, 87(1), pp.84-95.
+
+8) Save the aligned images in the _aligned folder e.g. BERNa2025a_aligned
+   
+10) Run the Process2 function. 
+
+## sw process images without alignment.R
 1) Assign a 4 letter identifier to the site where the images were taken, and append a letter to indicate the camera within that site e.g. BERNa, BERNb - BERNa is camera A on Berneray, and BERNb is camera B on Berneray.
 
 3) Create the following folder structure (replacing the first 5 letters with your camera's identifier). 
@@ -24,64 +47,69 @@ _OUTPUT:_ Folders of processed images and metadata: _raw, _renamed, _metadata, _
 e.g. BERNa2025a, BERNa2025b, and BERNa2025c are all images collected from camera A on Berneray in 2025. 
   <img width="218" height="144" alt="image" src="https://github.com/user-attachments/assets/47b17c9a-268f-459f-9a8e-0866a82a1a2b" />
 
-5) Open '**1 sw process cameras.R**' for images collected on Reconyx and Bushnell cameras (will likely work for other camera types. OR open '**1 sw process cameras_Timelapse Systems.R**' for cameras developed by Time-lapse Systems (part of Hideway Media Ltd). Read through this script, change the necessary lines to match your camera name and run. 
+5) Open '**sw process cameras without alignment.R**' for images collected on Reconyx and Bushnell cameras (will likely work for other camera types). Read through this script, change the necessary lines to match your camera name and run the Process function.
 
-The other scripts saved within the 'Functions' folder are called from '1 sw process cameras.R' and '1 sw process cameras_Timelapse Systems.R', but do not need to be open in R when '1 sw processs cameras.R' or '1 sw process cameras_Timelapse Systems.R' are running. These functions are as follows:   
-(NOTE, Not all functions will be required e.g. midday, goldstandard, rotate, and can be hashed out in the code )
+## Functions 
+Here is a description of the functions that 'sw process cameras with alignment.R' and 'sw process images without alignment.R' will call. 
+
+The other scripts saved within the 'Functions' folder are called from 'sw process cameras with alignment.R' and 'sw process cameras without alignment.R', but do not need to be open in R when 'sw processs cameras with alignment.R' or 'sw process cameras without alignment.R' are running. These functions are as follows:   
+(NOTE, Not all functions will be required e.g. midday, goldstandard, rotate, and can be hashed out in the code. Please read the above scripts to understand when to use each one.)
  
- --> **1 sw setup folders**    
+ --> **sw setup folders**    
     Creates the rest of the folders needed for the script. 
 
- --> **2 sw copyall**  
+--> **sw setup folders directories**
+    Creates the directories for the folders needed for the script, but does not create the folders themselves (as this has already been done by 'sw setup folders.R'
+    
+ --> **sw copyall**  
     Copies all images from 'raw' to 'renamed' folder, assigning each image a new name in the process   
     Images saved in '_renamed' folder 
 
- --> **3 sw metadata extraction**  
+ --> **sw metadata extraction**  
     Creates a spreadsheet with imageid, datetime and temperature   
     Images saved in '_metadata' folder
 
- --> **4a sw select and reduce zooniverse**  
+--> **sw crop images before alignment**
+    Removes the black border at the top and bottom of camera trap images.   
+    Images saved in '_cropped' folder
+
+ --> **sw select and reduce zooniverse**  
     Selects specific images from the 'renamed' folder (e.g. 11.00, 12.00, 13.00), compresses them, and copies to 'zooniverse folder'  
     Images saved in '_zooniverse' folder
     
-OR **4b sw select and reduce zooniverse_round minutes bushnell**   
+OR **sw select and reduce zooniverse_round minutes bushnell**   
     Rounds the time of all images to the nearest hour (e.g. 10:07:01 --> 10:00:00, 11:54:00 --> 12:00:00)  
     This is required for Bushnell cameras, which take images at different minutes/seconds, rather than exactly on the hour  
     Then, selects specific images from 'renamed' folder (e.g. 11.00, 12.00, 13.00), compresses them, and copies to 'zooniverse folder'  
     Images saved in '_zooniverse' folder 
 
-OR **4c sw select zooniverse**  
+OR **sw select zooniverse**  
     Selects specific images from the 'renamed' folder (e.g. 11.00, 12.00, 13.00), and copies to 'zooniverse folder'. These images remain at their orignal size, they are not reduced.  
     Images saved in '_threeaday' folder 
 
-OR **4d sw select zooniverse_round minutes bushnell**     
+OR **sw select zooniverse_round minutes bushnell**     
     Rounds the time of all images to the nearest hour (e.g. 10:07:01 --> 10:00:00, 11:54:00 --> 12:00:00)  
     This is required for Bushnell cameras, which take images at different minutes/seconds, rather than exactly on the hour  
     Then, selects specific images from 'renamed' folder (e.g. 11.00, 12.00, 13.00), and copies to 'zooniverse folder'  
     Images saved in '_zooniverse' folder 
  
---> **5a sw select midday**
+--> **sw select midday**
    Selects the midday images  
    Images saved in '_midday' folder  
 
-OR **5b sw select midday_ round minutes bushnell**  
+OR **sw select midday_ round minutes bushnell**  
    Rounds the time of all images to the nearest hour (e.g. 10:07:01 --> 10:00:00, 11:54:00 --> 12:00:00)  
    This is required for Bushnell cameras, which take images at different minutes/seconds, rather than exactly on the hour  
    Then, selects the midday images  
    Images saved in 'midday' folder   
 
---> **6 sw gold standard select**  
+--> **sw gold standard select**  
     Randomly chooses images for gold standard classification  
     Images saved in '_goldstandard' folder  
 
---> **7 sw rotate** 
+--> **sw rotate** 
     Rotates the images by a specific angle (e.g. 90) so they are the correct orientation  
     Images saved in '_rotated' folder   
-    
---> **8 sw new metadata for cropped_images_Timelapse Systems**  
-    Creates a new metadata file for Timelapse Systems images.   
-    This is necessary because Timelapse Systems images are cropped prior to upload.  
-    File saved in '_metadata' folder  
     
 ### 2 Formating zooniverse output 
 _OVERALL AIM:_ To extract volunteer classifications (x, y coordinates where volunteers clicked) from Seabird Watch for subsequent analysis.
