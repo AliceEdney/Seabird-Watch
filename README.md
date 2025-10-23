@@ -50,10 +50,8 @@ e.g. BERNa2025a, BERNa2025b, and BERNa2025c are all images collected from camera
 5) Open '**sw process cameras without alignment.R**' for images collected on Reconyx and Bushnell cameras (will likely work for other camera types). Read through this script, change the necessary lines to match your camera name and run the Process function.
 
 ## Functions 
-Here is a description of the functions that 'sw process cameras with alignment.R' and 'sw process images without alignment.R' will call. 
-
 The other scripts saved within the 'Functions' folder are called from 'sw process cameras with alignment.R' and 'sw process cameras without alignment.R', but do not need to be open in R when 'sw processs cameras with alignment.R' or 'sw process cameras without alignment.R' are running. These functions are as follows:   
-(NOTE, Not all functions will be required e.g. midday, goldstandard, rotate, and can be hashed out in the code. Please read the above scripts to understand when to use each one.)
+(NOTE - not all functions will be required e.g. midday, goldstandard, rotate, and can be hashed out in the code. Please read the above scripts to understand when to use each one.)
  
  --> **sw setup folders**    
     Creates the rest of the folders needed for the script. 
